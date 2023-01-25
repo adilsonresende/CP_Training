@@ -22,15 +22,13 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-
-steps:
 - task: NuGetToolInstaller@1
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**/*CP_Training.UnitTests/*.csproj'
     testRunTitle: 'Unit tests'
-
 
 - task: VSBuild@1
   inputs:
