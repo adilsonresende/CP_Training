@@ -1,4 +1,9 @@
 # ASP.NET
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '''**/CP_Training/*.csproj'''
+    testRunTitle: 'Running Unit Tests'
 # Build and test ASP.NET projects.
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
@@ -21,6 +26,11 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
@@ -28,7 +38,3 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
