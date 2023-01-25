@@ -22,16 +22,15 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
 
+steps:
+- task: NuGetToolInstaller@1
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '''**/CP_Training/*.csproj'''
-    testRunTitle: 'Running Unit Tests'
+    projects: '**/*CP_Training.UnitTests/*.csproj'
+    testRunTitle: 'Unit tests'
+
 
 - task: VSBuild@1
   inputs:
